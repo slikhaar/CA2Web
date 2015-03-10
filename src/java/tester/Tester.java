@@ -30,8 +30,11 @@ public class Tester {
 
         System.out.println(p.getHobbies().get(1).getName());
 
+        Person person = facade.findPerson(1);        
+        System.out.println(person.getFirstName());
+        
+        
         List<Person> persons = facade.getPersons();
-
         System.out.println(persons.size());
         System.out.println(persons.get(0).getFirstName());
         System.out.println(persons.get(0).getLastName());
