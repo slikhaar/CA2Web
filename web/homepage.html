@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title><h1>CA2</h1></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> <!--jQuery-->
+        <script>
+            $(document).ready(function () {
+                $("#btn").click(getPerson);
+            });
+
+
+            function getPerson() {
+
+                var person = document.getElementById("textfield").value;
+                var request = $.ajax({
+                    url: "api/person/" + person,
+                    dataType: "json",
+                });
+
+                request.done(function (person) {
+
+                    var li = "<li>" + "ID: " + person.id + " firstname: " + person.firstName + " lastname: " + person.lastName + "</li>"
+                    $("#persons").append(li);
+
+                });
+
+                request.fail(function (jqXHR, textStatus) {
+                    alert("Request failed: " + textStatus);
+                });
+
+            }
+
+
+        </script>
+    </head>
+    <body>
+        <div>Hola chica!</div>
+        <input type="text" id="textfield">
+        <input type="submit" id="btn" value="Find Player">
+
+        <ul id="persons">
+        </ul>
+    </body>
+</html>
