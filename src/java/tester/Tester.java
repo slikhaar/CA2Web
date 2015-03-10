@@ -5,36 +5,37 @@
  */
 package tester;
 
+import entity.Hobby;
+import entity.Person;
+import facade.EntityFacade;
 import java.util.List;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author Afrooz
- */
 public class Tester {
 
-//    ProjectFacade facade = new ProjectFacade(Persistence.createEntityManagerFactory("StudyPoint4DemoPU"));
-//    Project p = new Project("Projekt 1");
-//    p  = facade.createProject(p);
-//
-//    System.out.println (p.getId
-//    ());
-//        
-//        Task t1 = new Task("Opgave 1");
-//    p  = facade.addTask(p, t1);
-//
-//    System.out.println (p.getTasks
-//    ().get(0).getName());
-//        
-//        Task t2 = new Task("Opgave 2");
-//    p  = facade.addTaskFromId(1, t2);
-//
-//    System.out.println (p.getTasks
-//    ().get(1).getName());
-//        
-//        List<Project> projects = facade.getProjects();
-//        System.out.println(projects.size());
-//        System.out.println(projects.get(0).getName();
+    public static void main(String[] args) {
+        EntityFacade facade = new EntityFacade(Persistence.createEntityManagerFactory("CA2WebPU"));
+        Person p = new Person("Anders", "And");
+        p = facade.createPerson(p);
+
+        System.out.println(p.getId());
+
+        Hobby h1 = new Hobby("Tennis", "Smashing a ball");
+        p = facade.addHobby(p, h1);
+
+        System.out.println(p.getHobbies().get(0).getName());
+
+        Hobby h2 = new Hobby("Gaming", "Going crazy");
+        p = facade.addHobbyFromId(1, h2);
+
+        System.out.println(p.getHobbies().get(1).getName());
+
+        List<Person> persons = facade.getPersons();
+
+        System.out.println(persons.size());
+        System.out.println(persons.get(0).getFirstName());
+        System.out.println(persons.get(0).getLastName());
+
+    }
 
 }

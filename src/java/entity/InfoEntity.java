@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,18 +24,17 @@ public class InfoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String email;
 
     @OneToMany
+    @JoinColumn(name = "FK_Phone")
     List<Phone> phones = new ArrayList();
 
     public void addPhones(Phone p) {
         phones.add(p);
     }
-    
-    
 
     public Integer getId() {
         return id;
@@ -42,6 +42,29 @@ public class InfoEntity implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public InfoEntity(String email) {
+        this.email = email;
+    }
+
+    public InfoEntity() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 
     @Override

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 /**
@@ -23,12 +24,13 @@ public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String street;
     private String additionalInfo;
 
     @OneToMany
+    @JoinColumn(name = "FK_InfoEntity")
     List<InfoEntity> infoEntities = new ArrayList();
 
     public void addInfoEntities(InfoEntity i) {
@@ -42,6 +44,41 @@ public class Address implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Address(String street, String additionalInfo) {
+        this.street = street;
+        this.additionalInfo = additionalInfo;
+    }
+
+    public Address() {
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public List<InfoEntity> getInfoEntities() {
+        return infoEntities;
+    }
+
+    public void setInfoEntities(List<InfoEntity> infoEntities) {
+        this.infoEntities = infoEntities;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {
