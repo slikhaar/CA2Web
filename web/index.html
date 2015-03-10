@@ -6,27 +6,47 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title><h1>CA2</h1></title>
+        <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> <!--jQuery-->
         <script>
-            $(document).ready(function () {
-
+         $(document).ready(function () {
+                $("#btn1").click(getPerson);
             });
 
+            function getPerson() {
+                var text = document.getElementById("field").value;
+                var request = $.ajax({
+                    url: "api/person/" + text,
+                    dataType: "json",
+                });
 
-            function getData() {
-
-                //make AJAX call and update DOM
-
-                //api/project (AJAX call)
+                request.done(function (person) {
+                        var p = "ID: " + person.id + "," + " Firstname: " + person.firstName + "," + " Lastname: " + person.lastName;
+                        $("#person").append(p);
+                    
+                });
+                request.fail(function (jqXHR, textStatus) {
+                    alert("Request failed: " + textStatus);
+                });
             }
-
-
+            ;               
         </script>
     </head>
     <body>
-        <div>Hola chica!</div>
+        <div><h1>CA2 Web</h1></div>
+        <input type="text" id="field">
+        <button id="btn1">Find Person</button>
+        
+        <ul id="person"></ul>
+        
+        <table>
+            
+            <thead>
+            
+            </thead>
+            <tbody id="tableBody1"></tbody>
+        </table>
     </body>
 </html>
