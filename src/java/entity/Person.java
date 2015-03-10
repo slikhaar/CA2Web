@@ -19,12 +19,12 @@ import javax.persistence.ManyToMany;
  * @author Afrooz
  */
 @Entity
-public class Person implements Serializable {
+public class Person extends InfoEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Integer id;
     private String firstName;
     private String lastName;
 
@@ -35,7 +35,8 @@ public class Person implements Serializable {
         hobbies.add(h);
     }
 
-    public Person(String firstName, String lastName) {
+    public Person(String email, String firstName, String lastName) {
+        super(email);
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -65,41 +66,6 @@ public class Person implements Serializable {
 
     public void setHobbies(List<Hobby> hobbies) {
         this.hobbies = hobbies;
-    }
-    
-    
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
-            return false;
-        }
-        Person other = (Person) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entity.Person[ id=" + id + " ]";
     }
 
 }

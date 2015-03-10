@@ -23,7 +23,7 @@ and open the template in the editor.
                 });
 
                 request.done(function (person) {
-                        var p = "ID: " + person.id + "," + " Firstname: " + person.firstName + "," + " Lastname: " + person.lastName;
+                        var p = "id: " + person.id + "," + " email: " + person.email + "," + " firstname: " + person.firstName + "," + " lastname: " + person.lastName;
                         $("#person").append(p);
                     
                 });

@@ -33,7 +33,7 @@ public class PersonService {
     public String getJson(@PathParam("id") int id) {
        
        Person person =  facade.findPerson(id);
-       PersonDTO dto = new PersonDTO(person.getId(), person.getFirstName(), person.getLastName());
+       PersonDTO dto = new PersonDTO(person.getId(), person.getEmail(), person.getFirstName(), person.getLastName());
        String personsAsJson = new Gson().toJson(dto);
        
        return personsAsJson;

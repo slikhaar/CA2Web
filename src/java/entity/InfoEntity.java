@@ -27,6 +27,8 @@ public class InfoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String email;
+    
+    Address address = new Address();
 
     @OneToMany
     @JoinColumn(name = "FK_Phone")

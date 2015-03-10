@@ -15,7 +15,7 @@ public class Tester {
 
     public static void main(String[] args) {
         EntityFacade facade = new EntityFacade(Persistence.createEntityManagerFactory("CA2WebPU"));
-        Person p = new Person("Anders", "And");
+        Person p = new Person("anders@gmail.com","Anders", "And");
         p = facade.createPerson(p);
 
         System.out.println(p.getId());
