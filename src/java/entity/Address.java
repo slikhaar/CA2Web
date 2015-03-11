@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,14 +22,20 @@ public class Address implements Serializable {
     private String street;
     private String additionalInfo;
 
-    @OneToMany
+    @OneToMany(mappedBy = "address")
     @JoinColumn(name = "FK_InfoEntity")
     List<InfoEntity> infoEntities = new ArrayList();
+    
+    @ManyToOne
+    private CityInfo cityInfo;
+    
+    public CityInfo getCityInfo(){
+        return cityInfo;
+    }
 
     public void addInfoEntities(InfoEntity i) {
         infoEntities.add(i);
     }
- 
 
     public Integer getId() {
         return id;
